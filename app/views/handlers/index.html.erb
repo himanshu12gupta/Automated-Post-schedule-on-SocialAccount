@@ -1,0 +1,75 @@
+<p class="notice"><%= notice %></p>
+
+<h1>Handlers</h1>
+
+<div id="handlers">
+  <% @handlers.each do |handler| %>
+    <div class="handler-item">
+      <%= render handler %>
+      <p>
+        <%= link_to "Show this handler", handler %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<div class="button-container">
+  <%= link_to "New handler", new_handler_path, class: "new-handler-link" %>
+</div>
+
+<style>
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
+#handlers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.handler-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 15px;
+  width: 250px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.new-handler-link {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.new-handler-link:hover {
+  background-color: #0056b3;
+}
+
+.button-container {
+  text-align: center; /* Center the button within the container */
+  margin: 20px 0; /* Add margin to separate from other content */
+}
+</style>

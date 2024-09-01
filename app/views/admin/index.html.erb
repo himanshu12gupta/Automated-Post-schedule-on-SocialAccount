@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Page</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <%= stylesheet_link_tag 'handler_page' %>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Social Media Scheduler</h1>
+    <%= form_with(model: @handler, local: true) do |f| %>
+      <div class="form-group">
+        <label for="instagramLink">Instagram Link</label>
+        <%= f.text_field :instagram_link, class: 'form-control', id: 'instagramLink', placeholder: 'Enter Instagram Link' %>
+      </div>
+      <div class="form-group">
+        <label for="facebookLink">Facebook Link</label>
+        <%= f.text_field :facebook_link, class: 'form-control', id: 'facebookLink', placeholder: 'Enter Facebook Link' %>
+      </div>
+
+      <!-- Container for dynamic fields -->
+      <div id="dynamicFieldsContainer" class="form-group">
+        <!-- Dynamic fields will be added here -->
+      </div>
+
+      <!-- Submit Button -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dynamicFieldsModal">
+        Add Dynamic Fields
+      </button>
+      <%= f.submit 'Save', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="dynamicFieldsModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Add Dynamic Fields</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="modalDynamicFieldsContainer" class="dynamic-field-container">
+            <!-- Existing fields for social media name and API key -->
+            <div class="form-group">
+              <label for="socialMediaName">Social Media Name</label>
+              <input type="text" class="form-control" id="socialMediaName" name="social_media_names[]" placeholder="Enter Social Media Name">
+            </div>
+            <div class="form-group">
+              <label for="apiKey">API Key</label>
+              <input type="text" class="form-control" id="apiKey" name="api_keys[]" placeholder="Enter API Key">
+            </div>
+          </div>
+          <button type="button" class="btn btn-info" id="addFieldButton">Add New Field</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveFieldsButton">Save Fields</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('addFieldButton').addEventListener('click', function() {
+      const container = document.getElementById('modalDynamicFieldsContainer');
+      const fieldCount = container.children.length / 2 + 1; // Adjust field count
+
+      const newNameField = document.createElement('div');
+      newNameField.className = 'form-group';
+      newNameField.innerHTML = `
+        <label for="socialMediaName${fieldCount}">Social Media Name ${fieldCount}</label>
+        <input type="text" class="form-control" id="socialMediaName${fieldCount}" name="social_media_names[]" placeholder="Enter Social Media Name ${fieldCount}">
+      `;
+
+      const newApiKeyField = document.createElement('div');
+      newApiKeyField.className = 'form-group';
+      newApiKeyField.innerHTML = `
+        <label for="apiKey${fieldCount}">API Key ${fieldCount}</label>
+        <input type="text" class="form-control" id="apiKey${fieldCount}" name="api_keys[]" placeholder="Enter API Key ${fieldCount}">
+      `;
+
+      container.appendChild(newNameField);
+      container.appendChild(newApiKeyField);
+    });
+
+    document.getElementById('saveFieldsButton').addEventListener('click', function() {
+      // Append fields from modal to the main form's dynamic fields container
+      const modalContainer = document.getElementById('modalDynamicFieldsContainer');
+      const formContainer = document.getElementById('dynamicFieldsContainer');
+      while (modalContainer.firstChild) {
+        formContainer.appendChild(modalContainer.firstChild);
+      }
+
+      // Close the modal
+      $('#dynamicFieldsModal').modal('hide');
+    });
+  </script>
+</body>
+</html>

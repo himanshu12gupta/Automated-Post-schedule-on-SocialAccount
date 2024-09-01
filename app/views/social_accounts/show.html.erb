@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'social' %>
+
+<div class="container social-body">
+  <p class="notice"><%= notice %></p>
+
+  <h2>Handlers</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Text</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @social_account.handlers.each do |handler| %>
+        <tr>
+          <td><%= handler.id %></td>
+          <td><%= handler.text || 'N/A' %></td>
+          <td><%= handler.time.present? ? handler.time.in_time_zone('Asia/Kolkata').strftime('%-d %b %Y %I:%M %p') : 'N/A' %></td>
+          <td>
+            <%= link_to 'Show', handler, class: 'btn btn-secondary btn-sm' %>
+            <%= link_to 'Delete', handler_path(handler), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mt-4">
+    <%= link_to "Edit this social account", edit_social_account_path(@social_account), class: "btn btn-primary" %> |
+    <%= link_to "Back to social accounts", social_accounts_path, class: "btn btn-secondary" %>
+  </div>
+</div>

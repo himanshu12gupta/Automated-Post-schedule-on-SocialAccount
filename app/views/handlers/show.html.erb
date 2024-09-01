@@ -1,0 +1,47 @@
+<div class ="container">
+<p style="color: green"><%= notice %></p>
+
+<%= stylesheet_link_tag 'social' %>
+<%= render @handler %>
+<h6 style="color: white; margin-top: 50px;" >Total Likes <%= @total_likes %></h6>
+<h6 style="color: white;">Total Comments <%= @comment_counts %></h6>
+
+  <h2>Likes</h2>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Post Name</th>
+        <th>Like By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @like_data.each do |like| %>
+        <tr>
+          <td><%= @handler.name %></td>
+          <td><%= like["name"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <h2>Comment</h2>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Post Name</th>
+        <th>Comment By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @total_comment.each do |like| %>
+        <tr>
+          <td><%= @handler.name %></td>
+          <td><%= like["from"]["name"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>
+  <%= link_to "Back to handlers", social_accounts_path %>
+
+</div>
+</div>

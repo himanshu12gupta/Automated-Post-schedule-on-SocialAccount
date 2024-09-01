@@ -1,0 +1,34 @@
+<!-- app/views/layouts/application.html.erb -->
+
+<%= stylesheet_link_tag 'social' %>
+
+<p class="notice"><%= notice %></p>
+
+<div class="container social-body">
+  <h1>Social Accounts</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Platform</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @social_accounts.each do |social_account| %>
+        <tr>
+          <td><%= social_account.id %></td>
+          <td><%= social_account.platform %></td>
+          <td class="actions-column">
+            <%= link_to 'Show', social_account, class: 'btn btn-info btn-sm' %>
+            <%= link_to 'Edit', edit_social_account_path(social_account), class: 'btn btn-primary btn-sm' %>
+            <%= button_to 'Destroy', social_account, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'New Social Account', new_social_account_path, class: 'btn btn-success' %>
+</div>

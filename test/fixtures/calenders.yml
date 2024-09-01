@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  start_date: 2024-08-31
+  end_date: 2024-08-31
+  handler: one
+
+two:
+  title: MyString
+  start_date: 2024-08-31
+  end_date: 2024-08-31
+  handler: two

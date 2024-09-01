@@ -1,0 +1,11 @@
+<h1>Analytics Dashboard</h1>
+
+<div>
+  <h2 class="text-white ml-2">Engagement by Facebook</h2>
+  <%= pie_chart @analytics.group(:platform).sum(:value), donut: true %>
+</div>
+
+<div>
+ <h2 class="text-white ml-2">Engagement by Instagram</h2>
+  <%= line_chart @analytics.sum(:value), xtitle: "Date", ytitle: "Engagement" %>
+</div>

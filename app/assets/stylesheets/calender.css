@@ -1,0 +1,50 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets, or any
+ * plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're encouraged to add your own CSS styles in a separate file in this directory and include
+ * it here using a relative path.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* Calendar container */
+.calender{
+    color: white;
+}
+
+.day {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Day heading */
+
+
+.day h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Event list items */
+.day p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Style for events */
+.day p {
+  padding: 5px;
+  border-left: 3px solid #007bff; /* Change color as needed */
+  background-color: #e9ecef;
+  border-radius: 3px;
+}

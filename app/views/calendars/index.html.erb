@@ -1,0 +1,14 @@
+<%= stylesheet_link_tag 'calender' %>
+<h1>Simple Calendar</h1>
+<div class="container calendar">
+  <%= month_calendar events: @calendars do |date, calendars| %>
+    <div class="day">
+      <%= date.strftime("%Y-%m-%d") %><br>
+      <% calendars.each do |calendar| %>
+        <div class="calendar">
+          <%= calendar.title %> - <%= calendar.handler_time.strftime("%I:%M %p") %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'login_page' %>
+
+<div class="wrapper sign-in">
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="input-field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+      <%= f.label :email %>
+    </div>
+
+    <div class="input-field">
+      <%= f.password_field :password, autofocus: true, autocomplete: "current-password", required: true %>
+      <%= f.label :password %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="forget">
+        <%= f.label :remember_me do %>
+          <%= f.check_box :remember_me %>
+        <p>
+          Remember me
+        </p>
+        <% end %>
+        <%= render "devise/shared/customlink" %>
+      </div>
+    <% end %>
+
+    <%= button_tag 'Log In', type: 'submit' %>
+
+    <br>
+
+    <div class="register">
+      <p>Don't have an account?
+        <%= render "devise/shared/signup_link" %>
+      </p>
+    </div>
+
+  <% end %>
+</div>
+
