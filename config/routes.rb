@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chats
   get 'calendars/index'
   resources :calendars, only: [:index]
   get 'admin/index'
